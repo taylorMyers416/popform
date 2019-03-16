@@ -4,7 +4,7 @@ import { Layout, Icon } from 'antd';
 const { Header } = Layout;
 
 const MyHeader = props => (
-    <Header style={{ background: 'none', padding: 0, display: props.display, position: 'fixed', zIndex: 1, top: "5px", right: "20px" }}>
+    <Header style={{ background: 'none', padding: 0, display: props.display, position: 'fixed', zIndex: 2, top: "5px", right: "20px" }}>
         <Icon
             className="trigger"
             type={props.collapsed ? 'menu-unfold' : 'menu-fold'}

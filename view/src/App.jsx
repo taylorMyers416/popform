@@ -29,14 +29,15 @@ class App extends Component {
             toggle={this.toggle.bind(this)}
             collapsed={this.state.collapsed}
           />
-          <Layout style={{ marginLeft: this.state.contentMargin}} onClick={this.minimize}>
+          <Layout style={{ marginLeft: this.state.contentMargin }} onClick={this.minimize}>
             <Header
               toggle={this.toggle.bind(this)}
               collapsed={this.state.collapsed}
               display={this.state.headerDisplay}
             />
             <Switch>
-              <Route exact path="/" component={Account} />
+              <Route exact path="/" component={Forms} />
+              <Route exact path="/Account" component={Account} />
               <Route exact path="/view-form/:id" component={ViewForm} />
               <Route exact path="/edit-form/:id" component={EditForm} />
               <Route exact path="/forms/:type" component={Forms} />
