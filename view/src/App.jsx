@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from 'antd';
 import { Footer, Sidebar, Header } from "./components"
-import { ViewForm, EditForm, Forms, Account, Data, NoMatch } from "./containers"
+import { ViewForm, EditForm, Forms, Account, Data, NoMatch, NewForm } from "./containers"
 
 class App extends Component {
 
@@ -37,7 +37,8 @@ class App extends Component {
             />
             <Switch>
               <Route exact path="/" component={Forms} />
-              <Route exact path="/Account" component={Account} />
+              <Route exact path="/account" component={Account} />
+              <Route exact path="/new-form" component={NewForm} />
               <Route exact path="/view-form/:id" component={ViewForm} />
               <Route exact path="/edit-form/:id" component={EditForm} />
               <Route exact path="/forms/:type" component={Forms} />
