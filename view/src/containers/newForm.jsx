@@ -1,59 +1,65 @@
 import React, { Component } from 'react';
-import { Steps, Button, message } from 'antd';
+import { Button, Input, Layout, Typography } from 'antd';
+import { Link } from "react-router-dom";
 
-const Step = Steps.Step;
+const { Content } = Layout,
+    { Title } = Typography
 
-const steps = [{
-    title: 'Choose starting point',
-    content: <div>div</div>,
-}, {
-    title: 'Form Settings',
-    content: 'Second-content',
-}, {
-    title: 'Success',
-    content: 'Last-content',
-}];
-
-class NewForm extends React.Component {
-
-state = {
-        current: 0,
-    };
-
-changeStep(num) {
-    const current = this.state.current + num;
-    this.setState({ current });
+const boxStyle = {
+    position: "absolute", transform: "translate(-50%, -50%",
+    textAlign: "center", marginTop: "-70px", top: "50%", left: "50%"
 }
 
-render() {
-    const { current } = this.state;
-    return (
-        <div>
-            <Steps current={current}>
-                {steps.map(item => <Step key={item.title} title={item.title} />)}
-            </Steps>
-            <div className="steps-content">{steps[current].content}</div>
-            <div className="steps-action">
-                {
-                    current < steps.length - 1
-                    && <Button type="primary" onClick={() => this.changeStep(1)}>Next</Button>
-                }
-                {
-                    current === steps.length - 1
-                    && <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
-                }
-                {
-                    current > 0
-                    && (
-                        <Button style={{ marginLeft: 8 }} onClick={() => this.changeStep(-1)}>
-                            Previous
-            </Button>
-                    )
-                }
-            </div>
-        </div>
-    );
-}
+class NewForm extends Component {
+
+    state = {
+        createForm: "block",
+        formCreated: "none",
+        errorText: "",
+        formId: "12345"
+    }
+
+    mediaQuery = () => this.setState({ marginLeft: window.innerWidth > 992 ? "100px" : "0px" })
+
+    componentDidMount() {
+        this.mediaQuery();
+        window.addEventListener("resize", this.mediaQuery.bind(this));
+    }
+
+    componentWillUnmount() { window.removeEventListener("resize", this.mediaQuery.bind(this)); }
+
+    handleChange = event => this.setState({ formName: event.target.value })
+
+    submitForm = () => this.switchDiv("none", "block")
+
+    switchDiv = (createForm, formCreated) => this.setState({ createForm, formCreated, formName: "" })
+
+    render() {
+
+        return (
+            <Content style={{ positon: "relative" }}>
+                <div style={{ display: this.state.createForm, marginLeft: this.state.marginLeft, ...boxStyle }}>
+                    <Title level={3}> Create New Form</Title>
+                    <Input
+                        style={{ maxWidth: "500px" }}
+                        placeholder="Form Name"
+                        onChange={this.handleChange}
+                        value={this.state.formName}
+                    />
+                    <br />
+                    <br />
+                    <Button onClick={this.submitForm}>Create Form</Button>
+                    <p style={{ color: "red" }}>{this.state.errorText}</p>
+                </div>
+                <div style={{ display: this.state.formCreated, marginLeft: this.state.marginLeft, ...boxStyle }}>
+                    <Title level={3}>Form Created!</Title>
+                    <Button><Link to = {`/edit-form/${this.state.formId}`}>Open form in editor</Link></Button>
+                    <p>or</p>
+                    <Button onClick={() => this.switchDiv("block", "none")}>Create another form.</Button>
+                </div>
+            </Content>
+        );
+    }
 }
 
 export default NewForm;
