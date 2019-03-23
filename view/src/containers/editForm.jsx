@@ -44,10 +44,7 @@ class EditForm extends Component {
 
   toggleModal = () => this.setState({ visible: !this.state.visible })
 
-  importQuestion = () => {
-    console.log("question")
-    this.toggleModal()
-  }
+  importQuestion = () => this.toggleModal()
 
   onDragEnd = result => {
     if (result.destination) {
