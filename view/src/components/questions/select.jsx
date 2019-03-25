@@ -9,8 +9,10 @@ const MySelect = props =>
     <QuestionHolder
         index={props.index}
         title={props.title}
+        drag={props.drag}
         children={
-            <Select defaultValue="lucy" style={{ maxWidth: "300px" }} onChange={props.onChange}
+            <Select value={props.value} style={{ maxWidth: "300px" }}
+                onChange={(e) => props.onChange(e, props.dataKey, "event")}
                 children={props.options.map((choice, index) => (
                     <Option value={choice}>{choice}</Option>
                 ))}>

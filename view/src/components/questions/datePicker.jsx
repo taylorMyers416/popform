@@ -3,13 +3,15 @@ import { DatePicker } from 'antd';
 import QuestionHolder from "./questionHolder.jsx"
 import moment from 'moment';
 
-const Date = props =>
+const MyDatePicker = props =>
     <QuestionHolder
         index={props.index}
         title={props.title}
+        drag={props.drag}
         children={
-            <DatePicker defaultValue={moment(moment.unix(props.timestamp), 'YYYY-MM-DD')} />
+            <DatePicker onChange={(e, f) => props.onChange(e, props.dataKey, "dateTime", f)}
+                value={moment(props.value, 'YYYY-MM-DD')} />
         }
     />
 
-export default Date
+export default MyDatePicker

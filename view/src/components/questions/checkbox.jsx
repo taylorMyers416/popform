@@ -3,17 +3,18 @@ import { Checkbox } from 'antd';
 import QuestionHolder from "./questionHolder.jsx"
 const MyCheckbox = props => {
 
-return <QuestionHolder
+    return <QuestionHolder
         index={props.index}
         title={props.title}
+        drag={props.drag}
         children={
-            <Checkbox style={{ fontSize: "16px" }} onChange={props.onChange}>
-                {props.checkText}
+            <Checkbox style={{ fontSize: "16px" }} onChange={(e) => props.onChange(e, props.dataKey, "check")}
+                checked={props.value}>
+                {props.options[0]}
             </Checkbox>
         }
     />
-        console.log(props)
-    }
+}
 
 
 

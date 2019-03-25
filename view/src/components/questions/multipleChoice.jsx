@@ -14,10 +14,12 @@ const MultiChoice = props =>
     <QuestionHolder
         title={props.title}
         index={props.index}
+        drag={props.drag}
         children={
-            <RadioGroup onChange={props.onChange} value={props.value}
+            <RadioGroup onChange={(e) => props.onChange(e, props.dataKey, "value")}
+                value={props.value}
                 children={props.options.map((option, index) => (
-                    <Radio style={radioStyle} value={index}>{option}</Radio>
+                    <Radio key={`radio${index}`} style={radioStyle} value={option}>{option}</Radio>
                 ))}>
             </RadioGroup>
         }

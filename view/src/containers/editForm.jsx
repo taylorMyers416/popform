@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, } from 'react-beautiful-dnd';
 import { Layout, Button, Card, Modal, Typography } from 'antd';
-import { ImportSearch, Checkbox, Input, Date, MultipleChoice, Select, TextArea, Time } from "../components/questions"
+import { ImportSearch, Checkbox, Input, DatePicker, MultipleChoice, Select, TextArea, TimePicker } from "../components/questions"
 const { Content } = Layout,
   { Title } = Typography
 
@@ -9,6 +9,7 @@ const { Content } = Layout,
 class EditForm extends Component {
 
   state = {
+    view: "edit",
     visible: false,
     display: "none",
     questionsArray: [
@@ -19,10 +20,10 @@ class EditForm extends Component {
         }
       },
       {
-        name: "CheckBox",
+        name: "DatePicker",
         props: {
-          checkText: "checktext",
-          title: "checkQuestion"
+          timestamp: "1498864994",
+          title: "dateQuestion"
         }
       }, {
         name: "Input",
@@ -40,8 +41,6 @@ class EditForm extends Component {
     ]
   }
 
-
-
   toggleModal = () => this.setState({ visible: !this.state.visible })
 
   importQuestion = () => this.toggleModal()
@@ -56,12 +55,20 @@ class EditForm extends Component {
   }
 
   createComponent = (question, index) => {
+    
     const componets = {
       "Input": Input,
-      "CheckBox": Checkbox
+      "CheckBox": Checkbox,
+      "DatePicker": DatePicker,
+      "TimePicker": TimePicker,
+      "MultipleChoice": MultipleChoice,
+      "Select": Select,
+      "TextArea": TextArea
     }
+
     const props = { index, ...question.props }
-    const compoent = React.createElement(componets[question.name], props)
+    
+    const compoent = React.createElement(componets[question.name],{key: index}, props)
     return compoent;
   }
 
@@ -83,7 +90,7 @@ class EditForm extends Component {
           <ImportSearch handleChange={() => this.setState({ display: "block" })} />
           <h3>Preview</h3>
           <div style={{ display: this.state.display }} >
-            <Checkbox checkText="checkText" />
+            <Checkbox key = "lol" checkText="checkText" />
           </div>
           <br />
           <Button style={{ display: this.state.display }}>Add to From</Button>

@@ -6,13 +6,13 @@ const MyInput = props =>
     <QuestionHolder
         index={props.index}
         title={props.title}
+        drag={props.drag}
         children={
             <div>
-                Fist Name: {" "}
                 <Input
                     style={{ maxWidth: "300px" }}
                     placeholder={props.placeholder}
-                    onChange={props.onChange}
+                    onChange={(e) => props.onChange(e,props.dataKey,"value")}
                     value={props.value}
                     size="small"
                 />

@@ -3,12 +3,13 @@ import { TimePicker } from 'antd';
 import QuestionHolder from "./questionHolder.jsx"
 import moment from 'moment';
 
-const Time = props =>
+const MyTimePicker = props =>
     <QuestionHolder
         index={props.index}
         title={props.title}
+        drag={props.drag}
         children={
-            <TimePicker onChange={props.onChange} defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />
+            <TimePicker onChange={(e,f) => props.onChange(e,props.dataKey,"dateTime",f)} value={moment(props.value, 'HH:mm:ss')} />
         }
     />
-export default Time
+export default MyTimePicker

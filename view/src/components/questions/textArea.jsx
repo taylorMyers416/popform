@@ -9,11 +9,12 @@ const MyTextArea = props =>
     <QuestionHolder
         index={props.index}
         title={props.title}
+        drag={props.drag}
         children={
             <TextArea
                 style={{ maxWidth: "300px" }}
                 placeholder={props.placeholder}
-                onChange={props.onChange}
+                onChange={(e) => props.onChange(e,props.dataKey,"value")}
                 value={props.value}
             />
         }
