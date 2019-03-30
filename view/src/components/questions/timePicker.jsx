@@ -8,6 +8,7 @@ const MyTimePicker = props =>
         index={props.index}
         title={props.title}
         drag={props.drag}
+        editBar={props.editBar}
         children={
             <TimePicker onChange={(e,f) => props.onChange(e,props.dataKey,"dateTime",f)} value={moment(props.value, 'HH:mm:ss')} />
         }

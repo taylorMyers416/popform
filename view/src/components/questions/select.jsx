@@ -10,6 +10,7 @@ const MySelect = props =>
         index={props.index}
         title={props.title}
         drag={props.drag}
+        editBar={props.editBar}
         children={
             <Select value={props.value} style={{ maxWidth: "300px" }}
                 onChange={(e) => props.onChange(e, props.dataKey, "event")}

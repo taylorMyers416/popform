@@ -7,6 +7,7 @@ const MyInput = props =>
         index={props.index}
         title={props.title}
         drag={props.drag}
+        editBar={props.editBar}
         children={
             <div>
                 <Input

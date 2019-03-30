@@ -10,6 +10,7 @@ const MyTextArea = props =>
         index={props.index}
         title={props.title}
         drag={props.drag}
+        editBar={props.editBar}
         children={
             <TextArea
                 style={{ maxWidth: "300px" }}

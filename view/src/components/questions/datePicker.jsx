@@ -8,6 +8,7 @@ const MyDatePicker = props =>
         index={props.index}
         title={props.title}
         drag={props.drag}
+        editBar={props.editBar}
         children={
             <DatePicker onChange={(e, f) => props.onChange(e, props.dataKey, "dateTime", f)}
                 value={moment(props.value, 'YYYY-MM-DD')} />

@@ -15,6 +15,7 @@ const MultiChoice = props =>
         title={props.title}
         index={props.index}
         drag={props.drag}
+        editBar={props.editBar}
         children={
             <RadioGroup onChange={(e) => props.onChange(e, props.dataKey, "value")}
                 value={props.value}
